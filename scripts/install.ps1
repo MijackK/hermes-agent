@@ -468,7 +468,7 @@ function Write-Banner {
     Write-Host ""
 }
 
-function Write-Info {b 
+function Write-Info {
     param([string]$Message)
     Write-Host "-> $Message" -ForegroundColor Cyan
 }
