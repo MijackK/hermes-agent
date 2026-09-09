@@ -26,7 +26,7 @@ const RU_NOUN = (count: number | string, one: string, few: string, many: string)
 export const ru = defineLocale({
   sessionImport: {
     title: 'Продолжить из другого приложения',
-    subtitle: 'Перенесите разговор в Hermes и продолжите с того места, где остановились.',
+    subtitle: 'Перенесите разговор в Shani и продолжите с того места, где остановились.',
     action: 'Импортировать сессию',
     readingFrom: 'Читаем с',
     connectedComputer: 'подключённого компьютера',
@@ -44,18 +44,18 @@ export const ru = defineLocale({
     more: 'Загрузить ещё сессии',
     messages: 'сообщений',
     choose: 'Разговор, который стоит продолжить',
-    chooseHelp: 'Выберите сессию, чтобы прочитать историю перед импортом в Hermes.',
+    chooseHelp: 'Выберите сессию, чтобы прочитать историю перед импортом в Shani.',
     previewLoading: 'Открываем просмотр',
     previewError: 'Просмотр недоступен',
     previewHelp: 'Исходный файл мог переместиться или измениться. Обновите список и повторите попытку.',
     previewLimit: 'Просмотр сокращён для удобства чтения. Импортируется весь разговор.',
     you: 'Вы',
-    snapshot: 'Этот разговор уже есть в Hermes. Откройте существующую копию, чтобы продолжить.',
+    snapshot: 'Этот разговор уже есть в Shani. Откройте существующую копию, чтобы продолжить.',
     copyNotice:
       'Копируется текст разговора. Исходные файлы не меняются. Вывод инструментов и рассуждения не переносятся.',
     importing: 'Импорт…',
-    open: 'Открыть в Hermes',
-    continue: 'Продолжить в Hermes',
+    open: 'Открыть в Shani',
+    continue: 'Продолжить в Shani',
     importError: 'Не удалось импортировать разговор.'
   },
   common: {
@@ -118,19 +118,19 @@ export const ru = defineLocale({
     pathCopied: 'Путь скопирован'
   },
   boot: {
-    ready: 'Hermes Desktop готов',
+    ready: 'Shani Desktop готов',
     desktopBootFailedWithMessage: message => `Не удалось запустить приложение: ${message}`,
     steps: {
       connectingGateway: 'Подключение к шлюзу',
-      loadingSettings: 'Загрузка настроек Hermes',
+      loadingSettings: 'Загрузка настроек Shani',
       loadingSessions: 'Загрузка последних сеансов',
-      retryingRemoteBackend: 'Переподключение к удалённому бэкенду Hermes…',
+      retryingRemoteBackend: 'Переподключение к удалённому бэкенду Shani…',
       startingDesktopConnection: 'Запуск подключения приложения',
-      startingHermesDesktop: 'Запуск Hermes Desktop…'
+      startingHermesDesktop: 'Запуск Shani Desktop…'
     },
     errors: {
-      backgroundExited: 'Фоновый процесс Hermes завершён.',
-      backgroundExitedDuringStartup: 'Фоновый процесс Hermes завершился при запуске.',
+      backgroundExited: 'Фоновый процесс Shani завершён.',
+      backgroundExitedDuringStartup: 'Фоновый процесс Shani завершился при запуске.',
       backendStopped: 'Бэкенд остановлен',
       desktopBootFailed: 'Не удалось запустить приложение',
       gatewayConnectionLost: 'Соединение с шлюзом потеряно',
@@ -138,7 +138,7 @@ export const ru = defineLocale({
       ipcBridgeUnavailable: 'IPC-мост приложения недоступен.'
     },
     failure: {
-      title: 'Hermes не удалось запустить',
+      title: 'Shani не удалось запустить',
       description:
         'Фоновый шлюз не запустился. Попробуйте один из шагов восстановления ниже. Ничто из этого не удаляет ваши чаты и настройки.',
       remoteTitle: 'Требуется вход в удалённый шлюз',
@@ -180,9 +180,9 @@ export const ru = defineLocale({
     copyDetailFailed: 'Не удалось скопировать подробность уведомления',
     backendOutOfDateTitle: 'Устаревший бэкенд',
     backendOutOfDateMessage:
-      'Ваш бэкенд Hermes старше этой сборки приложения и может работать некорректно. Обновите их, чтобы они совпали.',
+      'Ваш бэкенд Shani старше этой сборки приложения и может работать некорректно. Обновите их, чтобы они совпали.',
     installMethodUnsupportedTitle: 'Неподдерживаемый способ установки',
-    updateHermes: 'Обновить Hermes',
+    updateHermes: 'Обновить Shani',
     updateReadyTitle: 'Обновление готово',
     updateReadyMessage: count =>
       `Доступно ${count} ${count % 10 === 1 && count % 100 !== 11 ? 'новое изменение' : count % 10 >= 2 && count % 10 <= 4 && (count % 100 < 12 || count % 100 > 14) ? 'новых изменения' : 'новых изменений'}.`,
@@ -202,7 +202,7 @@ export const ru = defineLocale({
       diskFull: 'Диск заполнен — освободите место и повторите.',
       gatewayAuthFailed: 'Аутентификация шлюза не удалась — проверьте API_SERVER_KEY.',
       methodNotAllowed:
-        'Бэкенд приложения отклонил запрос (405 Method Not Allowed). Попробуйте перезапустить Hermes Desktop.',
+        'Бэкенд приложения отклонил запрос (405 Method Not Allowed). Попробуйте перезапустить Shani Desktop.',
       microphonePermission: 'Доступ к микрофону запрещён.',
       openaiRejectedApiKey: 'OpenAI отклонил API-ключ.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI отклонил API-ключ (${status} invalid_api_key).`,
@@ -233,8 +233,8 @@ export const ru = defineLocale({
       approveAction: 'Одобрить',
       rejectAction: 'Отклонить',
       inputTitle: 'Требуется ввод',
-      inputBody: 'Hermes ожидает ваш ответ.',
-      turnDoneTitle: 'Hermes завершил',
+      inputBody: 'Shani ожидает ваш ответ.',
+      turnDoneTitle: 'Shani завершил',
       turnDoneBody: '',
       turnErrorTitle: 'Ход не удался',
       backgroundDoneTitle: 'Фоновая задача завершена',
@@ -405,7 +405,7 @@ export const ru = defineLocale({
     exportConfig: 'Экспорт конфигурации',
     importConfig: 'Импорт конфигурации',
     resetToDefaults: 'Сбросить к значениям по умолчанию',
-    resetConfirm: 'Сбросить все настройки к значениям Hermes по умолчанию?',
+    resetConfirm: 'Сбросить все настройки к значениям Shani по умолчанию?',
     exportFailed: 'Не удалось экспортировать',
     resetFailed: 'Не удалось сбросить',
     nav: {
@@ -440,7 +440,7 @@ export const ru = defineLocale({
       agent: {
         title: 'Плагины агента',
         blurb:
-          'Плагины, установленные в бэкенд Hermes — инструменты, навыки, MCP-серверы, хуки и slash-команды. Переносимые — пакеты Agent Plugins (навыки + MCP-бандлы, работающие и в других агентах). Переключатели действуют для новых сеансов.',
+          'Плагины, установленные в бэкенд Shani — инструменты, навыки, MCP-серверы, хуки и slash-команды. Переносимые — пакеты Agent Plugins (навыки + MCP-бандлы, работающие и в других агентах). Переключатели действуют для новых сеансов.',
         appliesTo: 'Применяется к:',
         empty: 'Плагины агента пока не установлены.',
         loadFailed: 'Не удалось загрузить плагины агента',
@@ -448,7 +448,7 @@ export const ru = defineLocale({
         search: 'Поиск плагинов…',
         noMatches: 'Плагины, подходящие под поиск, не найдены.',
         toggleFailed: name => `Не удалось переключить ${name}`,
-        updateBackendToManage: 'Обновите бэкенд Hermes, чтобы управлять этим плагином из приложения.',
+        updateBackendToManage: 'Обновите бэкенд Shani, чтобы управлять этим плагином из приложения.',
         sources: {
           bundled: 'встроенный',
           user: 'пользовательский',
@@ -497,7 +497,7 @@ export const ru = defineLocale({
       intro: 'Системные уведомления (не всплывающие внутри приложения). Настраивается для каждого устройства.',
       enableAll: 'Включить уведомления',
       enableAllDesc: 'Если выключено — все уведомления ниже будут заглушены.',
-      focusedHint: 'Оповещения о завершении срабатывают только пока Hermes в фоне.',
+      focusedHint: 'Оповещения о завершении срабатывают только пока Shani в фоне.',
       kinds: {
         approval: {
           label: 'Нужно одобрение',
@@ -505,11 +505,11 @@ export const ru = defineLocale({
         },
         input: {
           label: 'Нужен ввод',
-          description: 'Hermes задал вопрос или требует пароль/секрет.'
+          description: 'Shani задал вопрос или требует пароль/секрет.'
         },
         turnDone: {
           label: 'Ответ готов',
-          description: 'Ход завершился, пока Hermes был в фоне.'
+          description: 'Ход завершился, пока Shani был в фоне.'
         },
         turnError: {
           label: 'Ход не удался',
@@ -525,11 +525,11 @@ export const ru = defineLocale({
         },
         plugin: {
           label: 'Уведомления плагинов',
-          description: 'Плагин приложения отправил уведомление, пока Hermes был в фоне.'
+          description: 'Плагин приложения отправил уведомление, пока Shani был в фоне.'
         }
       },
       test: 'Отправить тестовое уведомление',
-      testTitle: 'Hermes',
+      testTitle: 'Shani',
       testBody: 'Уведомления работают.',
       testSent:
         'Тест отправлен. Если ничего не появилось, проверьте разрешения на уведомления в системе и режим «Не беспокоить».',
@@ -549,7 +549,7 @@ export const ru = defineLocale({
       advanced: 'Дополнительно'
     },
     searchPlaceholder: {
-      about: 'О Hermes Desktop',
+      about: 'О Shani Desktop',
       config: 'Поиск настроек…',
       gateway: 'Подключение шлюза…',
       keys: 'Поиск API-ключей…',
@@ -565,7 +565,7 @@ export const ru = defineLocale({
       title: 'Внешний вид',
       intro: 'Только для приложения. Режим — это яркость, тема — палитра и оформление чата.',
       colorMode: 'Цветовой режим',
-      colorModeDesc: 'Выберите фиксированный режим или позвольте Hermes следовать настройкам системы.',
+      colorModeDesc: 'Выберите фиксированный режим или позвольте Shani следовать настройкам системы.',
       toolViewTitle: 'Отображение вызовов инструментов',
       toolViewDesc: 'Режим «Продукт» скрывает сырые данные инструментов, «Технический» показывает полный вход/выход.',
       reasoningCollapsedTitle: 'Сворачивать «мышление» по умолчанию',
@@ -618,7 +618,7 @@ export const ru = defineLocale({
       introSplashTitle: 'Экран приветствия',
       introSplashDesc: 'Логотип и подсказка, показываемые на пустом чате.',
       reactionsTitle: 'Реакции на сообщения',
-      reactionsDesc: 'Эмодзи-тапбеки в стиле iMessage — реагируйте на сообщения, и Hermes сможет реагировать на ваши.',
+      reactionsDesc: 'Эмодзи-тапбеки в стиле iMessage — реагируйте на сообщения, и Shani сможет реагировать на ваши.',
       composerPopoutTitle: 'Плавающий композер',
       composerPopoutDesc: 'Позволяет вытягивать композер из его док-зоны. Отключите, чтобы он был закреплён снизу.',
       embedsTitle: 'Встроенные превью',
@@ -652,9 +652,9 @@ export const ru = defineLocale({
       pet: {
         title: 'Питомец',
         intro:
-          'Заберите анимированного питомца из petdex, который парит над приложением и реагирует на действия Hermes — «бегает», пока выполняются инструменты, радуется успеху и хмурится при ошибках.',
+          'Заберите анимированного питомца из petdex, который парит над приложением и реагирует на действия Shani — «бегает», пока выполняются инструменты, радуется успеху и хмурится при ошибках.',
         restartHint:
-          'Питомцам нужен быстрый перезапуск — текущее приложение запустилось до появления этой функции. Выйдите из Hermes и откройте снова, затем вернитесь сюда.',
+          'Питомцам нужен быстрый перезапуск — текущее приложение запустилось до появления этой функции. Выйдите из Shani и откройте снова, затем вернитесь сюда.',
         on: 'Вкл',
         off: 'Выкл',
         scaleTitle: 'Размер',
@@ -873,7 +873,7 @@ export const ru = defineLocale({
       timezone: 'Идентификатор часового пояса IANA. Пустое значение — системный часовой пояс.',
       agent: {
         imageInputMode: 'Управляет тем, как вложения изображений отправляются модели.',
-        maxTurns: 'Верхний предел ходов с вызовами инструментов, после которого Hermes останавливает запуск.'
+        maxTurns: 'Верхний предел ходов с вызовами инструментов, после которого Shani останавливает запуск.'
       },
       terminal: {
         cwd: 'Папка проекта по умолчанию для инструментов и терминала.',
@@ -887,9 +887,9 @@ export const ru = defineLocale({
       codeExecution: {
         mode: 'Насколько строго выполнение кода ограничено текущим проектом.'
       },
-      fileReadMaxChars: 'Максимальное число символов, которые Hermes может прочитать из одного запроса к файлу.',
+      fileReadMaxChars: 'Максимальное число символов, которые Shani может прочитать из одного запроса к файлу.',
       approvals: {
-        mode: 'Как Hermes обрабатывает команды, требующие явного подтверждения.',
+        mode: 'Как Shani обрабатывает команды, требующие явного подтверждения.',
         timeout: 'Как долго запросы подтверждения ждут перед тайм-аутом.'
       },
       security: {
@@ -936,16 +936,16 @@ export const ru = defineLocale({
       },
       updates: {
         nonInteractiveLocalChanges:
-          'Когда Hermes обновляет себя из приложения (без запроса в терминале), сохранять локальные правки исходников (stash) или выбрасывать (discard). Обновления из терминала всегда спрашивают.'
+          'Когда Shani обновляет себя из приложения (без запроса в терминале), сохранять локальные правки исходников (stash) или выбрасывать (discard). Обновления из терминала всегда спрашивают.'
       }
     }),
     about: {
-      heading: 'Hermes Desktop',
+      heading: 'Shani Desktop',
       version: value => `Версия ${value}`,
       versionUnavailable: 'Версия недоступна',
       bundleOutOfSync: 'Сборка приложения устарела',
       bundleOutOfSyncDesc:
-        'Рантайм Hermes обновлён, но само приложение — ещё старая сборка: новые функции интерфейса (например, Bot Mode) не появятся до обновления. Запустите обновление ниже, чтобы пересобрать приложение. Если предупреждение не исчезнет, переустановите с последнего установщика.',
+        'Рантайм Shani обновлён, но само приложение — ещё старая сборка: новые функции интерфейса (например, Bot Mode) не появятся до обновления. Запустите обновление ниже, чтобы пересобрать приложение. Если предупреждение не исчезнет, переустановите с последнего установщика.',
       bundleOutOfSyncAction: 'Скачать установщик',
       updates: 'Обновления',
       checkNow: 'Проверить сейчас',
@@ -964,7 +964,7 @@ export const ru = defineLocale({
       lastChecked: age => `Проверено ${age}`,
       justNowSuffix: ' · только что',
       automaticUpdates: 'Автоматические обновления',
-      automaticUpdatesDesc: 'Hermes автоматически проверяет обновления в фоне и сообщает, когда они готовы.',
+      automaticUpdatesDesc: 'Shani автоматически проверяет обновления в фоне и сообщает, когда они готовы.',
       branchCommit: (branch, commit) => `Ветка ${branch} · Коммит ${commit}`,
       never: 'никогда',
       justNow: 'только что',
@@ -981,7 +981,7 @@ export const ru = defineLocale({
       searchPlaceholder: 'Поиск…',
       noResults: 'Ничего не найдено',
       systemDefault: 'Системное по умолчанию',
-      loading: 'Загрузка конфигурации Hermes…',
+      loading: 'Загрузка конфигурации Shani…',
       emptyTitle: 'Настраивать нечего',
       emptyDesc: 'В этом разделе нет настраиваемых параметров.',
       failedLoad: 'Не удалось загрузить настройки',
@@ -1005,7 +1005,7 @@ export const ru = defineLocale({
     quickEntry: {
       enabledTitle: 'Быстрый ввод',
       enabledDesc:
-        'Глобальным горячим ключом вызывайте маленький композер откуда угодно и отправляйте запрос, не открывая Hermes.',
+        'Глобальным горячим ключом вызывайте маленький композер откуда угодно и отправляйте запрос, не открывая Shani.',
       shortcutTitle: 'Горячий ключ быстрого ввода',
       shortcutDesc: 'Нужен хотя бы один модификатор, например CommandOrControl+Shift+Space.',
       active: 'Горячий ключ активен.',
@@ -1036,7 +1036,7 @@ export const ru = defineLocale({
     connections: {
       title: 'Зарегистрированные шлюзы',
       intro:
-        'Управляйте этим устройством и всеми шлюзами Hermes, до которых можно дотянуться через удалённые, SSH или Cloud-соединения.',
+        'Управляйте этим устройством и всеми шлюзами Shani, до которых можно дотянуться через удалённые, SSH или Cloud-соединения.',
       stagedNote:
         'Переключайтесь между шлюзами из раздела «Сеансы». Профили, чаты, мессенджеры и cron-задачи остаются за своим шлюзом; работа на других шлюзах продолжается.',
       launchModeTitle: 'При запуске возвращаться к «Сеансам» на последнем шлюзе',
@@ -1063,15 +1063,15 @@ export const ru = defineLocale({
       updateAllRunning: 'Обновление всех инстансов…',
       updateAllDone: 'Обновления разосланы',
       updateAllFailed: 'Не удалось разослать обновления',
-      updateSkippedCloud: 'Управляется Hermes Cloud',
+      updateSkippedCloud: 'Управляется Shani Cloud',
       kindLocal: 'Локальный',
       kindRemote: 'Удалённый шлюз',
-      kindCloud: 'Hermes Cloud',
+      kindCloud: 'Shani Cloud',
       kindSsh: 'SSH',
-      kindLocalDesc: 'Рантайм Hermes, которым управляет это приложение.',
-      kindRemoteDesc: 'Шлюз Hermes, доступный по HTTP(S) — LAN, Tailscale или интернет.',
-      kindCloudDesc: 'Хостинговая инстанция, обнаруженная через ваш аккаунт Hermes Cloud.',
-      kindSshDesc: 'Установка Hermes, доступная по SSH.',
+      kindLocalDesc: 'Рантайм Shani, которым управляет это приложение.',
+      kindRemoteDesc: 'Шлюз Shani, доступный по HTTP(S) — LAN, Tailscale или интернет.',
+      kindCloudDesc: 'Хостинговая инстанция, обнаруженная через ваш аккаунт Shani Cloud.',
+      kindSshDesc: 'Установка Shani, доступная по SSH.',
       labelTitle: 'Имя',
       labelDesc:
         'Обязательно. Показывается везде, где фигурирует эта инстанция; должно быть уникальным (напр. «Домашняя лаборатория», «Рабочий ноутбук»).',
@@ -1080,7 +1080,7 @@ export const ru = defineLocale({
       sshHostTitle: 'SSH-хост',
       headersTitle: 'Дополнительные заголовки шлюза',
       headersDesc:
-        'Отправляются с каждым HTTP- и WebSocket-запросом к этому шлюзу — например, для прокси доступа вроде Cloudflare Access (CF-Access-Client-Id / CF-Access-Client-Secret). Значения хранятся зашифрованными. Заголовки, которыми управляет Hermes (Authorization, Cookie, Host…), игнорируются.',
+        'Отправляются с каждым HTTP- и WebSocket-запросом к этому шлюзу — например, для прокси доступа вроде Cloudflare Access (CF-Access-Client-Id / CF-Access-Client-Secret). Значения хранятся зашифрованными. Заголовки, которыми управляет Shani (Authorization, Cookie, Host…), игнорируются.',
       headerValuePlaceholder: 'Значение',
       headerValueSaved: 'Сохранено — оставьте пустым, чтобы не менять',
       headerAdd: 'Добавить заголовок',
@@ -1091,7 +1091,7 @@ export const ru = defineLocale({
       sameBackendHint: label => `Тот же бэкенд, что и «${label}»`,
       localAddHint: 'Локальное недоступно: управляемое локальное соединение уже существует (их всегда только одно).',
       cloudAddHint:
-        'Подсказка: вход в Hermes Cloud выше автоматически обнаруживает ваших агентов — эту форму используйте только для ручной регистрации известного URL инстанса.',
+        'Подсказка: вход в Shani Cloud выше автоматически обнаруживает ваших агентов — эту форму используйте только для ручной регистрации известного URL инстанса.',
       save: 'Сохранить соединение',
       saving: 'Сохранение…',
       cancel: 'Отмена',
@@ -1104,23 +1104,23 @@ export const ru = defineLocale({
       title: 'Подключение шлюза',
       envOverride: 'переопределение переменными окружения',
       intro:
-        'По умолчанию — локальный. Используйте удалённый, когда приложение должно управлять бэкендом Hermes в другом месте. Соединения шлюзов — на уровне машины; профили обнаруживаются из подключённых шлюзов.',
+        'По умолчанию — локальный. Используйте удалённый, когда приложение должно управлять бэкендом Shani в другом месте. Соединения шлюзов — на уровне машины; профили обнаруживаются из подключённых шлюзов.',
       envOverrideTitle: 'Переменные окружения управляют этой сессией приложения.',
       envOverrideDesc:
         'Сбросьте HERMES_DESKTOP_REMOTE_URL и HERMES_DESKTOP_REMOTE_TOKEN, чтобы использовать сохранённую настройку ниже.',
       modeTitle: 'Режим подключения',
       localTitle: 'Локальный шлюз',
-      localDesc: 'Запускает приватный бэкенд Hermes на localhost. Это значение по умолчанию, работает офлайн.',
+      localDesc: 'Запускает приватный бэкенд Shani на localhost. Это значение по умолчанию, работает офлайн.',
       remoteTitle: 'Удалённый шлюз',
-      remoteDesc: 'Подключает это приложение к удалённому бэкенду Hermes.',
+      remoteDesc: 'Подключает это приложение к удалённому бэкенду Shani.',
       remoteAuthHint:
         'Хостинговые шлюзы используют OAuth или логин/пароль; самохостинговые могут использовать токен сессии.',
-      cloudTitle: 'Hermes Cloud',
-      cloudDesc: 'Войдите в Hermes Cloud один раз и выбирайте агентов из своего аккаунта — без вставки URL.',
-      cloudSignInTitle: 'Hermes Cloud',
-      cloudSignIn: 'Войти в Hermes Cloud',
-      cloudSignedIn: 'Вы вошли в Hermes Cloud',
-      cloudNeedsSignIn: 'Войдите в Hermes Cloud, чтобы обнаружить агентов в вашем аккаунте.',
+      cloudTitle: 'Shani Cloud',
+      cloudDesc: 'Войдите в Shani Cloud один раз и выбирайте агентов из своего аккаунта — без вставки URL.',
+      cloudSignInTitle: 'Shani Cloud',
+      cloudSignIn: 'Войти в Shani Cloud',
+      cloudSignedIn: 'Вы вошли в Shani Cloud',
+      cloudNeedsSignIn: 'Войдите в Shani Cloud, чтобы обнаружить агентов в вашем аккаунте.',
       cloudSignedInDesc: 'Вы вошли. Выберите агента ниже; сессия обновляется автоматически.',
       cloudAgentsTitle: 'Ваши агенты',
       cloudOrgPickerTitle: 'Выберите организацию',
@@ -1136,11 +1136,11 @@ export const ru = defineLocale({
       cloudRefresh: 'Обновить',
       cloudConnect: 'Подключиться',
       cloudConnecting: 'Подключение…',
-      cloudDiscoverFailed: 'Не удалось загрузить агентов Hermes Cloud',
+      cloudDiscoverFailed: 'Не удалось загрузить агентов Shani Cloud',
       cloudConnectFailed: 'Не удалось подключиться к этому агенту',
-      cloudSignInFailed: 'Не удалось войти в Hermes Cloud',
-      cloudSignedOutTitle: 'Выход из Hermes Cloud',
-      cloudSignedOutMessage: 'Сессия Hermes Cloud сброшена.',
+      cloudSignInFailed: 'Не удалось войти в Shani Cloud',
+      cloudSignedOutTitle: 'Выход из Shani Cloud',
+      cloudSignedOutMessage: 'Сессия Shani Cloud сброшена.',
       cloudConnectedTitle: 'Подключено',
       cloudConnectedPill: 'Подключено',
       cloudConnectedTo: name => `Подключено к ${name}.`,
@@ -1188,9 +1188,9 @@ export const ru = defineLocale({
       enterUrlFirst: 'Сначала введите удалённый URL.',
       restartingTitle: 'Перезапуск соединения шлюза',
       savedTitle: 'Настройки шлюза сохранены',
-      restartingMessage: 'Hermes Desktop переподключится с сохранёнными настройками — оболочка останется открытой.',
+      restartingMessage: 'Shani Desktop переподключится с сохранёнными настройками — оболочка останется открытой.',
       savedMessage: 'Сохранено для следующего перезапуска.',
-      connectedTo: (baseUrl, version) => `Подключено к ${baseUrl}${version ? ` · Hermes ${version}` : ''}`,
+      connectedTo: (baseUrl, version) => `Подключено к ${baseUrl}${version ? ` · Shani ${version}` : ''}`,
       reachableTitle: 'Удалённый шлюз доступен',
       signedOutTitle: 'Вы вышли',
       signedOutMessage: 'Сессия удалённого шлюза сброшена.',
@@ -1202,7 +1202,7 @@ export const ru = defineLocale({
       saveFailed: 'Не удалось сохранить настройки шлюза',
       sshTitle: 'Подключение по SSH',
       sshDesc:
-        'Hermes запускается на удалённой машине по SSH и туннелируется в это приложение — ничего не нужно запускать или открывать самим. Требуется рабочая SSH-аутентификация по ключу на хост.',
+        'Shani запускается на удалённой машине по SSH и туннелируется в это приложение — ничего не нужно запускать или открывать самим. Требуется рабочая SSH-аутентификация по ключу на хост.',
       sshTrustHint:
         'Первый предъявленный ключ хоста доверяется и фиксируется; последующие изменения приведут к отказу.',
       sshHostTitle: 'Хост',
@@ -1218,25 +1218,25 @@ export const ru = defineLocale({
       sshPortDesc: 'Пусто = 22 или порт из ~/.ssh/config.',
       sshKeyTitle: 'Файл ключа',
       sshKeyDesc: 'Путь к закрытому ключу. Пусто = ssh-agent или ~/.ssh/config.',
-      sshHermesPathTitle: 'Путь к Hermes (необязательно)',
+      sshHermesPathTitle: 'Путь к Shani (необязательно)',
       sshHermesPathDesc: 'Полный путь к бинарнику hermes на удалённой машине. Пусто = автоопределение.',
       sshHermesPathPlaceholder: 'автоопределение',
       sshTestConnection: 'Проверить SSH',
       sshConnect: 'Подключиться',
       sshButtonsHint: '«Сохранить» применится при следующем запуске. «Подключиться» переподключится сейчас.',
-      sshReachable: (host, platform) => `Доступен: ${host} (${platform}) — Hermes найден`,
+      sshReachable: (host, platform) => `Доступен: ${host} (${platform}) — Shani найден`,
       sshIncompleteHost: 'Введите SSH-хост перед подключением.',
       sshErrUnreachable: 'Не удалось достичь этого хоста по SSH. Проверьте хост, порт и сеть.',
       sshErrAuth:
-        'SSH-аутентификация не удалась. Загрузите ключ в ssh-agent (ssh-add) или задайте IdentityFile в ~/.ssh/config — Hermes запускает ssh в неинтерактивном режиме.',
+        'SSH-аутентификация не удалась. Загрузите ключ в ssh-agent (ssh-add) или задайте IdentityFile в ~/.ssh/config — Shani запускает ssh в неинтерактивном режиме.',
       sshErrHostKey:
         'Ключ хоста ИЗМЕНИЛСЯ с последнего подключения. Убедитесь, что это ожидаемо, затем выполните ssh-keygen -R <host> и переподключитесь.',
       sshErrNotInstalled:
-        'Hermes не установлен на удалённой машине. Установите его там (curl -fsSL https://hermes-agent.nousresearch.com/install.sh | sh) или задайте путь к Hermes.',
+        'Shani не установлен на удалённой машине. Установите его там (curl -fsSL https://hermes-agent.nousresearch.com/install.sh | sh) или задайте путь к Shani.',
       sshErrPlatform:
-        'Неподдерживаемая удалённая платформа. SSH-режим Hermes Desktop поддерживает удалённые хосты Linux, macOS и Windows.',
+        'Неподдерживаемая удалённая платформа. SSH-режим Shani Desktop поддерживает удалённые хосты Linux, macOS и Windows.',
       sshErrTimeout: 'SSH-соединение истекло. Хост может быть недоступен или «спит».',
-      sshErrUpdateRequired: 'Перед подключением через SSH обновите Hermes на удалённой машине.',
+      sshErrUpdateRequired: 'Перед подключением через SSH обновите Shani на удалённой машине.',
       sshErrUnknown: 'SSH-соединение не удалось.'
     },
     keys: {
@@ -1324,7 +1324,7 @@ export const ru = defineLocale({
       noOutput: 'Вывода пока нет.',
       deepLinkTitle: 'Добавить MCP-сервер?',
       deepLinkDescription:
-        'Ссылка запросила добавить этот MCP-сервер в Hermes. Проверьте конфигурацию ниже — она пришла из ссылки, а не из Hermes.',
+        'Ссылка запросила добавить этот MCP-сервер в Shani. Проверьте конфигурацию ниже — она пришла из ссылки, а не из Shani.',
       deepLinkStdioWarning:
         'Этот сервер запускает локальный процесс на вашей машине командой, показанной ниже. Продолжайте только если доверяете источнику.',
       deepLinkConfirm: 'Добавить сервер',
@@ -1380,7 +1380,7 @@ export const ru = defineLocale({
       connectAccount: 'Подключить аккаунт',
       haveApiKey: 'Ввести API-ключ вместо этого?',
       intro:
-        'Войдите по подписке — копировать API-ключ не нужно. Hermes проведёт вход в браузере прямо здесь, в приложении.',
+        'Войдите по подписке — копировать API-ключ не нужно. Shani проведёт вход в браузере прямо здесь, в приложении.',
       connected: 'Подключено',
       collapse: 'Свернуть',
       connectAnother: 'Подключить другой провайдер',
@@ -1401,7 +1401,7 @@ export const ru = defineLocale({
       noKeysMatch: 'Провайдеры, подходящие под поиск, не найдены.',
       localEndpoint: {
         title: 'Локальный / свой эндпоинт',
-        description: 'Направьте Hermes на любой OpenAI-совместимый эндпоинт (Zyphra, vLLM, llama.cpp, Ollama и т. д.).'
+        description: 'Направьте Shani на любой OpenAI-совместимый эндпоинт (Zyphra, vLLM, llama.cpp, Ollama и т. д.).'
       },
       loading: 'Загрузка провайдеров…'
     },
@@ -1644,7 +1644,7 @@ export const ru = defineLocale({
     loadFailed: 'Не удалось загрузить граф памяти',
     loading: 'Загрузка…',
     emptyTitle: 'Пока ничего не изучено',
-    emptyDesc: 'По мере того как Hermes создаёт навыки и память для вашей работы, они появятся здесь.',
+    emptyDesc: 'По мере того как Shani создаёт навыки и память для вашей работы, они появятся здесь.',
     share: 'Поделиться картой',
     shareHint:
       'Скопируйте код, чтобы поделиться этой картой, или вставьте код для загрузки. Включает только раскладку, а не вашу память или текст навыков.',
@@ -1725,7 +1725,7 @@ export const ru = defineLocale({
       placeholder: 'Поиск питомцев…',
       loading: 'Загрузка галереи petdex…',
       error: 'Не удалось подключиться к галерее petdex.',
-      staleBackend: 'Перезапустите Hermes, чтобы использовать питомцев — бэкенд старше этой функции.',
+      staleBackend: 'Перезапустите Shani, чтобы использовать питомцев — бэкенд старше этой функции.',
       empty: 'Совпадающих питомцев нет.',
       turnOff: 'Отключить',
       turnOn: 'Включить',
@@ -1752,8 +1752,8 @@ export const ru = defineLocale({
       hatchComposing: 'Собираем по частям…',
       hatchSaving: 'Почти готово…',
       namePlaceholder: 'Имя для вашего питомца',
-      staleBackend: 'Обновите Hermes, чтобы генерировать питомцев.',
-      backgroundHint: 'Можно закрыть — Hermes уведомит, когда будет готово.',
+      staleBackend: 'Обновите Shani, чтобы генерировать питомцев.',
+      backgroundHint: 'Можно закрыть — Shani уведомит, когда будет готово.',
       slowProviderHint: 'Это может занять несколько минут',
       remix: 'Ремикс',
       remixConfirmTitle: 'Сделать ремикс из этого облика?',
@@ -1789,7 +1789,7 @@ export const ru = defineLocale({
     },
     nav: {
       newChat: { title: 'Новый сеанс', detail: 'Начать новый сеанс' },
-      settings: { title: 'Настройки', detail: 'Настройка Hermes desktop' },
+      settings: { title: 'Настройки', detail: 'Настройка Shani desktop' },
       skills: { title: 'Возможности', detail: 'Навыки, инструменты и MCP-серверы' },
       messaging: { title: 'Сообщения', detail: 'Настройка Telegram, Slack, Discord и других' },
       artifacts: { title: 'Артефакты', detail: 'Просмотр сгенерированных результатов' }
@@ -1811,11 +1811,11 @@ export const ru = defineLocale({
     noSessions: 'Сеансов пока нет.',
     gatewayRunning: 'Шлюз сообщений работает',
     gatewayStopped: 'Шлюз сообщений остановлен',
-    hermesActiveSessions: (version, count) => `Hermes ${version} · Активные сеансы: ${count}`,
+    hermesActiveSessions: (version, count) => `Shani ${version} · Активные сеансы: ${count}`,
     restartGateway: 'Перезапустить шлюз',
     openBrowser: 'Открыть браузер',
     gatewayRestartFailed: 'Не удалось перезапустить шлюз.',
-    updateHermes: 'Обновить Hermes',
+    updateHermes: 'Обновить Shani',
     reloadWindow: 'Перезагрузить окно',
     actionRunning: 'выполняется',
     actionDone: 'готово',
@@ -2169,7 +2169,7 @@ export const ru = defineLocale({
     deleteDescMid: ' и сотрёт его ',
     deleteDescSuffix: ' каталог. Это действие необратимо.',
     deleting: 'Удаление...',
-    createDesc: 'Профили — это независимые среды Hermes: отдельные настройки, навыки и SOUL.md.',
+    createDesc: 'Профили — это независимые среды Shani: отдельные настройки, навыки и SOUL.md.',
     nameLabel: 'Имя',
     cloneFrom: 'Клонировать из',
     cloneFromNone: 'Нет (пустой)',
@@ -2212,7 +2212,7 @@ export const ru = defineLocale({
         `Будет пропущено ${count} ${RU_NOUN(count, 'задача', 'задачи', 'задач')} до тех пор, пока вы не проверите их настройки модели.`,
       detailMore: (names, remaining) => `${names} и ещё ${remaining}`,
       review: 'Проверить запланированные задачи',
-      saveFailed: 'Hermes не сохранил это изменение модели.'
+      saveFailed: 'Shani не сохранил это изменение модели.'
     },
     search: 'Поиск cron-задач...',
     loading: 'Загрузка cron-задач...',
@@ -2269,7 +2269,7 @@ export const ru = defineLocale({
     everyHourAt: minute => `Каждый час на :${minute}`,
     newCron: 'Новый cron',
     emptyDescNew:
-      'Запланируйте промпт, который будет выполняться по cron-выражению. Hermes выполнит его и доставит результаты в выбранное вами место.',
+      'Запланируйте промпт, который будет выполняться по cron-выражению. Shani выполнит его и доставит результаты в выбранное вами место.',
     emptyDescSearch: 'Попробуйте более широкий запрос.',
     emptyTitleNew: 'Запланированных задач пока нет',
     emptyTitleSearch: 'Нет совпадений',
@@ -2466,8 +2466,8 @@ export const ru = defineLocale({
       removeFromSidebar: 'Скрыть из боковой панели',
       createFailed: 'Не удалось создать проект',
       staleBackend:
-        'Обновите бэкенд Hermes, чтобы создавать проекты — ваш бэкенд старше этого desktop-приложения (Настройки → Обновления → Бэкенд).',
-      deleteConfirm: 'Это удалит сохранённый проект из Hermes. Файлы, git-репозитории и worktrees не пострадают.',
+        'Обновите бэкенд Shani, чтобы создавать проекты — ваш бэкенд старше этого desktop-приложения (Настройки → Обновления → Бэкенд).',
+      deleteConfirm: 'Это удалит сохранённый проект из Shani. Файлы, git-репозитории и worktrees не пострадают.',
       startWork: 'Новый worktree',
       newWorktreeTitle: 'Новый worktree',
       newWorktreeDesc: 'Назовите ветку для этого worktree.',
@@ -2477,7 +2477,7 @@ export const ru = defineLocale({
       baseBranchNone: 'Ветки не найдены',
       startWorkFailed: 'Не удалось создать worktree',
       worktreeStaleBackend:
-        'Обновите бэкенд Hermes, чтобы создавать worktrees по этому удалённому соединению — он старше git worktree API.',
+        'Обновите бэкенд Shani, чтобы создавать worktrees по этому удалённому соединению — он старше git worktree API.',
       worktreeProjectLabel: 'Проект',
       worktreeProjectPlaceholder: 'Поиск проектов…',
       worktreeProjectNone: 'Нет проектов с папкой',
@@ -2571,12 +2571,12 @@ export const ru = defineLocale({
   composer: {
     message: 'Сообщение',
     wakingProfile: profile => `Пробуждаем ${profile}…`,
-    placeholderStarting: 'Запуск Hermes...',
-    placeholderReconnecting: 'Переподключение к Hermes…',
+    placeholderStarting: 'Запуск Shani...',
+    placeholderReconnecting: 'Переподключение к Shani…',
     placeholderFollowUp: 'Отправить продолжение',
     newSessionPlaceholders: [
       'Что будем делать?',
-      'Дайте Hermes задачу',
+      'Дайте Shani задачу',
       'О чём вы думаете?',
       'Опишите, что нужно',
       'Что обсудим?',
@@ -2644,7 +2644,7 @@ export const ru = defineLocale({
       'composer.history': 'переключать поповер / историю'
     },
     attachUrlTitle: 'Прикрепить URL',
-    attachUrlDesc: 'Hermes загрузит страницу и добавит её как контекст для этого хода.',
+    attachUrlDesc: 'Shani загрузит страницу и добавит её как контекст для этого хода.',
     urlPlaceholder: 'https://example.com/post',
     urlHintPre: 'Укажите полный URL, например ',
     attach: 'Прикрепить',
@@ -2885,7 +2885,7 @@ export const ru = defineLocale({
       createPr: 'Создать PR',
       openPr: 'Открыть PR',
       ghMissing: 'Установите GitHub CLI (gh) и войдите, чтобы открывать PR',
-      agentShip: 'Попросить Hermes открыть PR',
+      agentShip: 'Попросить Shani открыть PR',
       agentShipUnavailable: 'Чат, которому принадлежат эти изменения, не на экране.',
       agentShipPrompt:
         'Проверьте текущие изменения, закоммитьте их с ясным conventional-commit сообщением, запушьте ветку и создайте pull request.',
@@ -2903,9 +2903,9 @@ export const ru = defineLocale({
       fetch: 'Скачиваем…',
       pull: 'Почти готово…',
       pydeps: 'Завершаем…',
-      update: 'Обновляем Hermes…',
+      update: 'Обновляем Shani…',
       rebuild: 'Пересобираем desktop-приложение…',
-      restart: 'Перезапускаем Hermes…',
+      restart: 'Перезапускаем Shani…',
       done: 'Обновление завершено',
       manual: 'Обновление из терминала',
       guiSkew: 'Обновите desktop-приложение',
@@ -2915,44 +2915,44 @@ export const ru = defineLocale({
     checkFailedTitle: 'Не удалось проверить обновления',
     tryAgain: 'Попробовать снова',
     notAvailableTitle: 'Обновление недоступно',
-    unsupportedMessage: 'Эта версия Hermes не может обновлять себя из приложения.',
+    unsupportedMessage: 'Эта версия Shani не может обновлять себя из приложения.',
     connectionRetry: 'Проверьте соединение и попробуйте снова.',
     latestBody: 'У вас последняя версия.',
     latestBodyBackend: 'Бэкенд работает на последней версии.',
     allSetTitle: 'Всё готово',
     availableTitle: 'Доступно новое обновление',
-    availableBody: 'Новая версия Hermes готова к установке.',
+    availableBody: 'Новая версия Shani готова к установке.',
     availableTitleBackend: 'Доступно обновление бэкенда',
-    availableBodyBackend: 'Новая версия подключённого бэкенда Hermes готова к установке.',
+    availableBodyBackend: 'Новая версия подключённого бэкенда Shani готова к установке.',
     availableBodyNoChangelog: 'Новая версия готова. Заметки о выпуске недоступны для этого типа установки.',
     updateNow: 'Обновить сейчас',
     maybeLater: 'Возможно позже',
     moreChanges: count => `+ ещё ${count} ${RU_NOUN(count, 'изменение', 'изменения', 'изменений')} включено.`,
     manualTitle: 'Обновление из терминала',
     manualBody:
-      'Hermes установлен из командной строки, поэтому обновления тоже выполняются там. Вставьте это в терминал:',
-    manualPickedUp: 'Hermes подхватит новую версию при следующем запуске.',
+      'Shani установлен из командной строки, поэтому обновления тоже выполняются там. Вставьте это в терминал:',
+    manualPickedUp: 'Shani подхватит новую версию при следующем запуске.',
     guiSkewTitle: 'Обновите desktop-приложение',
     guiSkewBody:
-      'Бэкенд обновлён, но пакет этого desktop-приложения не изменился. Обновите или переустановите desktop-приложение Hermes (ваш AppImage / .deb / .rpm), чтобы версии совпали.',
+      'Бэкенд обновлён, но пакет этого desktop-приложения не изменился. Обновите или переустановите desktop-приложение Shani (ваш AppImage / .deb / .rpm), чтобы версии совпали.',
     copy: 'Копировать',
     copied: 'Скопировано',
     done: 'Готово',
     applyingBody:
-      'Обновлятор Hermes возьмёт процесс на себя в своём окне и автоматически перезапустит Hermes, когда закончит. Пожалуйста, не открывайте Hermes вручную во время обновления.',
+      'Обновлятор Shani возьмёт процесс на себя в своём окне и автоматически перезапустит Shani, когда закончит. Пожалуйста, не открывайте Shani вручную во время обновления.',
     applyingBodyBackend:
-      'Удалённый бэкенд применяет обновление и перезапустится. Hermes переподключится автоматически, когда он снова заработает.',
-    applyingClose: 'Это окно закроется во время обновления, затем Hermes откроется сам.',
+      'Удалённый бэкенд применяет обновление и перезапустится. Shani переподключится автоматически, когда он снова заработает.',
+    applyingClose: 'Это окно закроется во время обновления, затем Shani откроется сам.',
     errorTitle: 'Обновление не завершилось',
     errorBody: 'Не переживайте — ничего не потеряно. Можно попробовать снова прямо сейчас.',
-    blockerTitle: 'Закрыть локальные предпросмотры, чтобы обновить Hermes?',
+    blockerTitle: 'Закрыть локальные предпросмотры, чтобы обновить Shani?',
     blockerBody:
-      'Hermes нужно остановить эти локальные предпросмотры перед обновлением. Ваши файлы не будут изменены или удалены.',
-    foreignBlockerTitle: 'Закрыть другие процессы, чтобы обновить Hermes',
+      'Shani нужно остановить эти локальные предпросмотры перед обновлением. Ваши файлы не будут изменены или удалены.',
+    foreignBlockerTitle: 'Закрыть другие процессы, чтобы обновить Shani',
     foreignBlockerBody:
-      'Hermes не может безопасно закрыть эти процессы автоматически. Закройте приложение, терминал или службу, которой принадлежит каждый из них, и повторите обновление.',
+      'Shani не может безопасно закрыть эти процессы автоматически. Закройте приложение, терминал или службу, которой принадлежит каждый из них, и повторите обновление.',
     mixedBlockerBody:
-      'Hermes может закрыть локальные предпросмотры, перечисленные ниже. Остальные процессы нужно закрыть вручную, прежде чем обновление сможет продолжиться.',
+      'Shani может закрыть локальные предпросмотры, перечисленные ниже. Остальные процессы нужно закрыть вручную, прежде чем обновление сможет продолжиться.',
     closePreviewsAndUpdate: 'Закрыть предпросмотры и обновить',
     closePreviewsAndCheckAgain: 'Закрыть предпросмотры и проверить снова',
     localPreview: 'Локальный предпросмотр',
@@ -2985,7 +2985,7 @@ export const ru = defineLocale({
       skipped: 'Пропущено',
       failed: 'Ошибка'
     },
-    oneTimeTitle: 'Hermes требует одноразовой установки',
+    oneTimeTitle: 'Shani требует одноразовой установки',
     unsupportedDesc: platform =>
       `Автоматическая установка при первом запуске пока недоступна на ${platform}. Откройте Терминал и выполните команду ниже, затем перезапустите это приложение. При следующих запусках этот шаг будет пропущен.`,
     installCommand: 'Команда установки',
@@ -2993,23 +2993,23 @@ export const ru = defineLocale({
     viewDocs: 'Открыть документацию по установке',
     installTo: 'Будет установлено в',
     retryAfterRun: 'Я выполнил — попробовать снова',
-    setupChoiceTitle: 'Настройка Hermes Desktop',
+    setupChoiceTitle: 'Настройка Shani Desktop',
     setupChoiceDesc:
-      'Подключите это приложение к уже работающему шлюзу Hermes или установите Hermes локально на этот компьютер.',
-    connectExistingTitle: 'Подключиться к существующему Hermes',
+      'Подключите это приложение к уже работающему шлюзу Shani или установите Shani локально на этот компьютер.',
+    connectExistingTitle: 'Подключиться к существующему Shani',
     connectExistingShort: 'Подключить существующий',
     connectExistingDesc:
       'Используйте удалённый бэкенд с сессионным токеном или входом через браузер. Локальная установка не начнётся.',
-    installLocalTitle: 'Установить Hermes локально',
-    installLocalDesc: 'Скачайте Hermes, создайте его Python-окружение и запустите бэкенд на этом компьютере.',
-    localStartUnavailable: 'Не удалось начать локальную установку. Перезапустите Hermes Desktop и попробуйте снова.',
-    remoteSetupTitle: 'Подключиться к существующему Hermes',
-    remoteSetupDesc: 'Введите URL вашего шлюза. Hermes Desktop определит, нужен токен или вход через браузер.',
+    installLocalTitle: 'Установить Shani локально',
+    installLocalDesc: 'Скачайте Shani, создайте его Python-окружение и запустите бэкенд на этом компьютере.',
+    localStartUnavailable: 'Не удалось начать локальную установку. Перезапустите Shani Desktop и попробуйте снова.',
+    remoteSetupTitle: 'Подключиться к существующему Shani',
+    remoteSetupDesc: 'Введите URL вашего шлюза. Shani Desktop определит, нужен токен или вход через браузер.',
     remoteUrlTitle: 'URL шлюза',
-    remoteUrlDesc: 'Используйте базовый URL шлюза Hermes, включая https:// для удалённых.',
+    remoteUrlDesc: 'Используйте базовый URL шлюза Shani, включая https:// для удалённых.',
     remoteUrlPlaceholder: 'https://gateway.example.com/hermes',
     probing: 'Определяем аутентификацию шлюза...',
-    probeError: 'Не удалось подключиться к этому шлюзу Hermes.',
+    probeError: 'Не удалось подключиться к этому шлюзу Shani.',
     identityProvider: 'ваш провайдер аутентификации',
     authTitle: 'Аутентификация',
     authNeedsOauth: provider => `Сначала войдите через ${provider}, чтобы проверить этот шлюз.`,
@@ -3029,12 +3029,12 @@ export const ru = defineLocale({
     applyRemote: 'Применить и переподключиться',
     backToSetup: 'Назад',
     failedTitle: 'Установка не удалась',
-    settingUpTitle: 'Настройка Hermes Agent',
+    settingUpTitle: 'Настройка Shani Agent',
     finishingTitle: 'Завершаем',
     failedDesc:
-      'Один из шагов установки завершился ошибкой. На Windows это может произойти, если запущена другая инстанция Hermes CLI или desktop. Остановите все работающие инстанции Hermes и повторите. Подробности — ниже или в журнале desktop.',
+      'Один из шагов установки завершился ошибкой. На Windows это может произойти, если запущена другая инстанция Shani CLI или desktop. Остановите все работающие инстанции Shani и повторите. Подробности — ниже или в журнале desktop.',
     activeDesc:
-      'Это одноразовая настройка. Установщик Hermes скачивает зависимости и настраивает вашу машину. При следующих запусках этот шаг будет пропущен.',
+      'Это одноразовая настройка. Установщик Shani скачивает зависимости и настраивает вашу машину. При следующих запусках этот шаг будет пропущен.',
     progress: (completed, total) => `Выполнено ${completed} из ${total} шагов`,
     currentStage: stage => ` — сейчас: ${stage}`,
     fetchingManifest: 'Загружаем манифест установщика...',
@@ -3051,10 +3051,10 @@ export const ru = defineLocale({
     reloadRetry: 'Перезагрузить и повторить'
   },
   onboarding: {
-    headerTitle: 'Настроим для вас Hermes Agent',
+    headerTitle: 'Настроим для вас Shani Agent',
     headerDesc: 'Подключите провайдера модели, чтобы начать общение. Большинство вариантов — в один клик.',
-    preparingInstall: 'Hermes завершает установку. Обычно это занимает меньше минуты при первом запуске.',
-    starting: 'Запускаем Hermes…',
+    preparingInstall: 'Shani завершает установку. Обычно это занимает меньше минуты при первом запуске.',
+    starting: 'Запускаем Shani…',
     lookingUpProviders: 'Ищем провайдеров...',
     collapse: 'Свернуть',
     otherProviders: 'Другие провайдеры',
@@ -3062,7 +3062,7 @@ export const ru = defineLocale({
     chooseLater: 'Выберу провайдера позже',
     recommended: 'Рекомендуется',
     connected: 'Подключено',
-    featuredPitch: 'Одна подписка, 300+ передовых моделей — рекомендуемый способ запускать Hermes',
+    featuredPitch: 'Одна подписка, 300+ передовых моделей — рекомендуемый способ запускать Shani',
     fireworksPitch: 'Прямой API моделей — передовые модели на хостинге Fireworks',
     openRouterPitch: 'Один ключ, сотни моделей — надёжный вариант по умолчанию',
     apiKeyOptions: {
@@ -3080,7 +3080,7 @@ export const ru = defineLocale({
       local: {
         short: 'self-hosted',
         description:
-          'Укажите Hermes локальный или self-hosted OpenAI-совместимый endpoint (vLLM, llama.cpp, Ollama и т.д.).'
+          'Укажите Shani локальный или self-hosted OpenAI-совместимый endpoint (vLLM, llama.cpp, Ollama и т.д.).'
       }
     },
     backToSignIn: 'Назад ко входу',
@@ -3093,7 +3093,7 @@ export const ru = defineLocale({
     update: 'Обновить',
     flowSubtitles: {
       pkce: 'Откроет браузер для входа, затем продолжит здесь',
-      device_code: 'Откроет страницу подтверждения в браузере — Hermes подключится автоматически',
+      device_code: 'Откроет страницу подтверждения в браузере — Shani подключится автоматически',
       external: 'Войдите один раз в терминале, затем вернитесь в чат'
     },
     startingSignIn: provider => `Начинаем вход для ${provider}...`,
@@ -3104,12 +3104,12 @@ export const ru = defineLocale({
     pickDifferentProvider: 'Выбрать другого провайдера',
     signInWith: provider => `Войти через ${provider}`,
     openedBrowser: provider => `Мы открыли ${provider} в вашем браузере.`,
-    authorizeThere: 'Авторизуйте Hermes там.',
+    authorizeThere: 'Авторизуйте Shani там.',
     copyAuthCode: 'Скопируйте код авторизации и вставьте его ниже.',
     pasteAuthCode: 'Вставьте код авторизации',
     reopenAuthPage: 'Открыть страницу авторизации снова',
     autoBrowser: provider =>
-      `Мы открыли ${provider} в вашем браузере. Авторизуйте Hermes там, и подключение произойдёт автоматически — ничего копировать и вставлять не нужно.`,
+      `Мы открыли ${provider} в вашем браузере. Авторизуйте Shani там, и подключение произойдёт автоматически — ничего копировать и вставлять не нужно.`,
     reopenSignInPage: 'Открыть страницу входа снова',
     waitingAuthorize: 'Ждём вашей авторизации...',
     externalPending: provider =>
@@ -3209,13 +3209,13 @@ export const ru = defineLocale({
       update: 'обновление',
       updateInProgress: 'Обновление выполняется',
       commitsBehind: (count, branch) => `${count} ${RU_NOUN(count, 'коммит', 'коммита', 'коммитов')} позади ${branch}`,
-      desktopVersion: version => `Hermes Desktop v${version}`,
+      desktopVersion: version => `Shani Desktop v${version}`,
       backendVersion: version => `Бэкенд v${version}`,
       clientLabel: version => `клиент v${version}`,
       connectionSsh: host => `SSH: ${host}`,
       connectionRemote: host => `Удалённый: ${host}`,
       connectionCloud: host => `Облако: ${host}`,
-      connectionCloudTooltip: host => `Hermes Cloud · ${host}`,
+      connectionCloudTooltip: host => `Shani Cloud · ${host}`,
       connectionSshTooltip: host => `SSH · ${host}`,
       connectionRemoteTooltip: host => `Удалённый · ${host}`,
       backendLabel: version => `бэкенд v${version}`,
@@ -3346,7 +3346,7 @@ export const ru = defineLocale({
     binaryTitle: 'Похоже на бинарный файл',
     binaryBody: label => `Предпросмотр ${label} может показать нечитаемый текст.`,
     largeTitle: 'Этот файл большой',
-    largeBody: (label, size) => `${label} — ${size}. Hermes покажет только первые 512 КБ.`,
+    largeBody: (label, size) => `${label} — ${size}. Shani покажет только первые 512 КБ.`,
     previewAnyway: 'Предпросмотр всё равно',
     truncated: 'Показаны первые 512 КБ.',
     noInlineTitle: 'Нет inline-предпросмотра',
@@ -3388,11 +3388,11 @@ export const ru = defineLocale({
         'Этот адрес указывает на машину, на которой работает ваш агент, а не на эту. Панель браузера загружает страницы локально, поэтому для удалённого dev-сервера нужен порт-форвардинг или доступный hostname.',
       failedToLoad: 'Не удалось загрузить предпросмотр',
       tryAgain: 'Попробовать снова',
-      restarting: 'Hermes перезапускается...',
-      askRestart: 'Попросить Hermes перезапустить сервер',
-      lookingRestart: taskId => `Hermes ищет сервер предпросмотра для перезапуска (${taskId})`,
+      restarting: 'Shani перезапускается...',
+      askRestart: 'Попросить Shani перезапустить сервер',
+      lookingRestart: taskId => `Shani ищет сервер предпросмотра для перезапуска (${taskId})`,
       restartingTitle: 'Перезапуск сервера предпросмотра',
-      restartingMessage: 'Hermes работает в фоне. Следите за прогрессом в консоли предпросмотра.',
+      restartingMessage: 'Shani работает в фоне. Следите за прогрессом в консоли предпросмотра.',
       startRestartFailed: message => `Не удалось запустить перезапуск сервера: ${message}`,
       restartFailed: 'Перезапуск сервера не удался',
       hideConsole: 'Скрыть консоль предпросмотра',
@@ -3404,16 +3404,16 @@ export const ru = defineLocale({
       reload: 'Перезагрузить страницу',
       address: 'Адрес',
       addressPlaceholder: 'Введите адрес',
-      blankPageBody: 'Введите адрес выше, чтобы просматривать, или попросите Hermes открыть страницу.',
-      finishedRestarting: message => `Hermes завершил перезапуск сервера предпросмотра${message ? `: ${message}` : ''}`,
+      blankPageBody: 'Введите адрес выше, чтобы просматривать, или попросите Shani открыть страницу.',
+      finishedRestarting: message => `Shani завершил перезапуск сервера предпросмотра${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Перезапуск сервера не удался: ${message}`,
       unknownError: 'неизвестная ошибка',
       restartedTitle: 'Сервер предпросмотра перезапущен',
       reloadingNow: 'Перезагружаем предпросмотр.',
       restartFailedTitle: 'Перезапуск предпросмотра не удался',
-      restartFailedMessage: 'Hermes не смог перезапустить сервер.',
+      restartFailedMessage: 'Shani не смог перезапустить сервер.',
       stillWorking:
-        'Hermes всё ещё работает, но результата перезапуска пока нет. Команда сервера может выполняться в foreground.',
+        'Shani всё ещё работает, но результата перезапуска пока нет. Команда сервера может выполняться в foreground.',
       workspaceReloading: 'Рабочее пространство изменилось, перезагружаем предпросмотр',
       fileChanged: url => `Файл изменился, перезагружаем предпросмотр: ${url}`,
       filesChanged: (count, url) =>
@@ -3503,7 +3503,7 @@ export const ru = defineLocale({
     thread: {
       loadingSession: 'Загрузка сеанса',
       showEarlier: 'Показать ранние сообщения',
-      loadingResponse: 'Hermes загружает ответ',
+      loadingResponse: 'Shani загружает ответ',
       resumeWhenBackgroundDone: count =>
         count === 1
           ? 'Продолжится, когда фоновая задача завершится'
@@ -3543,7 +3543,7 @@ export const ru = defineLocale({
       attachingFile: 'Прикрепление…'
     },
     approval: {
-      gatewayDisconnected: 'Шлюз Hermes не подключён',
+      gatewayDisconnected: 'Шлюз Shani не подключён',
       sendFailed: 'Не удалось отправить ответ на подтверждение',
       run: 'Выполнить',
       command: 'Команда',
@@ -3554,12 +3554,12 @@ export const ru = defineLocale({
       reject: 'Отклонить',
       alwaysTitle: 'Всегда разрешать эту команду?',
       alwaysDescription: pattern =>
-        `Это добавит паттерн «${pattern}» в ваш постоянный список разрешений (~/.hermes/config.yaml). Hermes больше не будет спрашивать о подобных командах — ни в этом сеансе, ни в будущем.`,
+        `Это добавит паттерн «${pattern}» в ваш постоянный список разрешений (~/.hermes/config.yaml). Shani больше не будет спрашивать о подобных командах — ни в этом сеансе, ни в будущем.`,
       alwaysAllow: 'Всегда разрешать'
     },
     clarify: {
       notReady: 'Запрос уточнения ещё не готов',
-      gatewayDisconnected: 'Шлюз Hermes не подключён',
+      gatewayDisconnected: 'Шлюз Shani не подключён',
       sendFailed: 'Не удалось отправить ответ на уточнение',
       loadingQuestion: 'Загрузка вопроса…',
       other: 'Другое (введите ответ)',
@@ -3594,7 +3594,7 @@ export const ru = defineLocale({
       envRequired: 'Сначала заполните обязательные учётные данные',
       sendFailed: 'Не удалось отправить ответ на настройку MCP',
       reloadFailed: 'Сервер сохранён, но перезагрузка MCP-инструментов не удалась — они загрузятся в следующем сеансе',
-      gatewayDisconnected: 'Шлюз Hermes не подключён'
+      gatewayDisconnected: 'Шлюз Shani не подключён'
     },
     tool: {
       copyCode: 'Копировать код',
@@ -3697,15 +3697,15 @@ export const ru = defineLocale({
     }
   },
   prompts: {
-    gatewayDisconnected: 'Шлюз Hermes не подключён',
+    gatewayDisconnected: 'Шлюз Shani не подключён',
     sudoSendFailed: 'Не удалось отправить пароль sudo',
     secretSendFailed: 'Не удалось отправить секрет',
     sudoTitle: 'Пароль администратора',
     sudoDesc:
-      'Hermes нужен ваш пароль sudo, чтобы выполнить команду с повышенными правами. Он отправляется только вашему локальному агенту.',
+      'Shani нужен ваш пароль sudo, чтобы выполнить команду с повышенными правами. Он отправляется только вашему локальному агенту.',
     sudoPlaceholder: 'пароль sudo',
     secretTitle: 'Требуется секрет',
-    secretDesc: 'Hermes нужны учётные данные, чтобы продолжить.',
+    secretDesc: 'Shani нужны учётные данные, чтобы продолжить.',
     secretPlaceholder: 'значение секрета'
   },
   desktop: {
@@ -3758,8 +3758,8 @@ export const ru = defineLocale({
     sessionExportFailed: 'Не удалось экспортировать сеанс',
     imageSaved: 'Изображение сохранено',
     downloadStarted: 'Загрузка началась',
-    restartToUseSaveImage: 'Перезапустите Hermes Desktop, чтобы использовать «Сохранить изображение».',
-    restartToSaveImages: 'Перезапустите Hermes Desktop, чтобы сохранять изображения',
+    restartToUseSaveImage: 'Перезапустите Shani Desktop, чтобы использовать «Сохранить изображение».',
+    restartToSaveImages: 'Перезапустите Shani Desktop, чтобы сохранять изображения',
     imageDownloadFailed: 'Загрузка изображения не удалась',
     openImage: 'Открыть изображение',
     downloadImage: 'Скачать изображение',
