@@ -21,12 +21,15 @@
 #
 #   # Skip the Hermes install (already installed), just (re)configure:
 #   .\install-with-local-llm.ps1 -SkipInstall -Model qwen2.5:14b
+#
+#   # Install + configure, then open the Hermes Desktop app:
+#   .\install-with-local-llm.ps1 -OpenDesktop
 # ============================================================================
 
 [CmdletBinding()]
 param(
     # Model id exactly as your backend serves it (Ollama tag, LM Studio id, ...).
-    [string]$Model = "qwen2.5:7b",
+    [string]$Model = "llama3.2:3b",
 
     # OpenAI-compatible base URL of the local server.
     [string]$BaseUrl = "http://localhost:11434/v1",
@@ -41,7 +44,10 @@ param(
     [string]$InstallScript = (Join-Path $PSScriptRoot "install.ps1"),
 
     # Extra args forwarded verbatim to install.ps1 (e.g. -Branch dev -NoVenv).
-    [string[]]$InstallArgs = @()
+    [string[]]$InstallArgs = @(),
+
+    # Launch the Hermes Desktop (Electron) app when done.
+    [switch]$OpenDesktop
 )
 
 $ErrorActionPreference = "Stop"
@@ -149,7 +155,21 @@ Write-Host "    provider : custom"
 Write-Host "    base_url : $BaseUrl"
 Write-Host "    model    : $Model"
 Write-Host ""
+
+# ---------------------------------------------------------------------------
+# Step 5: Optionally launch Hermes Desktop (Electron)
+# ---------------------------------------------------------------------------
+# `hermes desktop` builds (first run) and launches the native app. It needs
+# Node.js/npm on PATH and will take longer on the first launch while it builds.
+if ($OpenDesktop) {
+    Write-Step "Launching Hermes Desktop"
+    & $hermes desktop
+    if ($LASTEXITCODE -ne 0) { Write-Warn2 "hermes desktop exited $LASTEXITCODE" }
+}
+
+Write-Host ""
 Write-Host "Next steps:" -ForegroundColor Cyan
 Write-Host "  * Verify:  hermes config get model"
 Write-Host "  * Chat:    hermes"
+Write-Host "  * Desktop: hermes desktop"
 Write-Host "  * Make sure your backend is serving at $BaseUrl before chatting."
