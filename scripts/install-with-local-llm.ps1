@@ -50,9 +50,10 @@ param(
     [string[]]$InstallArgs = @(),
 
     # Build the Hermes Desktop (Electron) app during install (forwards
-    # install.ps1's -IncludeDesktop). Without it, `hermes desktop` builds the
-    # app on first launch instead. Implied by -OpenDesktop.
-    [switch]$IncludeDesktop,
+    # install.ps1's -IncludeDesktop). On by default; pass
+    # -IncludeDesktop:$false to defer the build to the first `hermes desktop`
+    # launch instead. Implied by -OpenDesktop.
+    [switch]$IncludeDesktop = $true,
 
     # Launch the Hermes Desktop (Electron) app when done.
     [switch]$OpenDesktop

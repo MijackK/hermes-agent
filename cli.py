@@ -2299,7 +2299,7 @@ def _build_compact_banner() -> str:
     if (getattr(_skin, "name", "default") if _skin else "default") == "default":
         tiny_line = "⚕ NOUS HERMES"
     else:
-        tiny_line = _skin.get_branding("agent_name", "Hermes Agent") if _skin else "Hermes Agent"
+        tiny_line = _skin.get_branding("agent_name", "Shani Agent") if _skin else "Shani Agent"
     line1 = f"{tiny_line} - AI Agent Framework"
 
     if os.environ.get("HERMES_FAST_STARTUP_BANNER") == "1":
@@ -3633,7 +3633,7 @@ class HermesCLI(CLIProcessNotificationsMixin, CLIAgentSetupMixin, CLICommandsMix
             self._display_resumed_history()
 
         _welcome_skin = None  # stays None when the skin engine failed
-        _welcome_text = "Welcome to Hermes Agent! Type your message or /help for commands."
+        _welcome_text = "Welcome to Shani Agent! Type your message or /help for commands."
         _welcome_color = "#FFF8DC"
         try:
             from hermes_cli.skin_engine import get_active_skin
