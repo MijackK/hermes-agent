@@ -24,6 +24,9 @@
 #
 #   # Install + configure, then open the Hermes Desktop app:
 #   .\install-with-local-llm.ps1 -OpenDesktop
+#
+#   # Install + configure + build the desktop app, but don't open it yet:
+#   .\install-with-local-llm.ps1 -IncludeDesktop
 # ============================================================================
 
 [CmdletBinding()]
@@ -46,6 +49,11 @@ param(
     # Extra args forwarded verbatim to install.ps1 (e.g. -Branch dev -NoVenv).
     [string[]]$InstallArgs = @(),
 
+    # Build the Hermes Desktop (Electron) app during install (forwards
+    # install.ps1's -IncludeDesktop). Without it, `hermes desktop` builds the
+    # app on first launch instead. Implied by -OpenDesktop.
+    [switch]$IncludeDesktop,
+
     # Launch the Hermes Desktop (Electron) app when done.
     [switch]$OpenDesktop
 )
@@ -66,7 +74,10 @@ if (-not $SkipInstall) {
     Write-Step "Installing Hermes Agent"
     # -SkipSetup: install.ps1 would otherwise launch the interactive wizard, which
     # cannot be driven non-interactively. We do the model config ourselves below.
-    & $InstallScript -SkipSetup @InstallArgs
+    # -IncludeDesktop: build apps/desktop into a launchable Hermes.exe now,
+    # instead of deferring that build to the first `hermes desktop` launch.
+    $desktopFlag = if ($IncludeDesktop -or $OpenDesktop) { @("-IncludeDesktop") } else { @() }
+    & $InstallScript -SkipSetup @desktopFlag @InstallArgs
     if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) { throw "install.ps1 exited with code $LASTEXITCODE" }
     Write-Ok "Hermes installed"
 } else {
