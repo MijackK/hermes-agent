@@ -43,8 +43,13 @@ param(
     # Skip installing Ollama AND pulling the model (non-Ollama backends).
     [switch]$SkipOllama,
 
-    # Path to the stock installer. Defaults to the copy beside this script.
-    [string]$InstallScript = (Join-Path $PSScriptRoot "install.ps1"),
+    # Path to the stock installer. When empty (default), the installer is
+    # downloaded from -InstallerUrl. Pass a local path here to use that copy.
+    [string]$InstallScript = "",
+
+    # URL to fetch the stock installer (install.ps1) from. Defaults to the
+    # canonical raw URL in the shani-agent repository.
+    [string]$InstallerUrl = "https://raw.githubusercontent.com/MijackK/shani-agent/main/scripts/install.ps1",
 
     # Extra args forwarded verbatim to install.ps1 (e.g. -Branch dev -NoVenv).
     [string[]]$InstallArgs = @(),
@@ -69,8 +74,19 @@ function Write-Warn2([string]$Msg) { Write-Host "[!]  $Msg" -ForegroundColor Yel
 # Step 1: Install Hermes (skip its interactive setup wizard; we configure below)
 # ---------------------------------------------------------------------------
 if (-not $SkipInstall) {
-    if (-not (Test-Path -LiteralPath $InstallScript)) {
-        throw "install.ps1 not found at '$InstallScript'. Pass -InstallScript or run from the scripts folder."
+    # Resolve the stock installer: a local copy when -InstallScript points at
+    # an existing file, otherwise download it from the repository.
+    if ($InstallScript -and (Test-Path -LiteralPath $InstallScript)) {
+        Write-Ok "Using local installer: $InstallScript"
+    } else {
+        Write-Step "Downloading installer from $InstallerUrl"
+        $ProgressPreference = "SilentlyContinue"
+        try { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 } catch {}
+        $InstallScript = Join-Path $env:TEMP ("hermes-install-" + [Guid]::NewGuid().ToString("N") + ".ps1")
+        Invoke-WebRequest -Uri $InstallerUrl -OutFile $InstallScript -UseBasicParsing
+        if (-not (Test-Path -LiteralPath $InstallScript)) {
+            throw "Failed to download installer from $InstallerUrl"
+        }
     }
     Write-Step "Installing Hermes Agent"
     # -SkipSetup: install.ps1 would otherwise launch the interactive wizard, which

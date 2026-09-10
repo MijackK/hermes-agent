@@ -383,8 +383,8 @@ $script:ResolvedPathReport = @{
 # Configuration
 # ============================================================================
 
-$RepoUrlSsh ="git@github.com:MijackK/hermes-agent.git"
-$RepoUrlHttps = "https://github.com/MijackK/hermes-agent.git"
+$RepoUrlSsh ="git@github.com:MijackK/shani-agent.git"
+$RepoUrlHttps = "https://github.com/MijackK/shani-agent.git"
 $PythonVersion = "3.11"
 # Minor versions the installer accepts when the requested $PythonVersion isn't
 # available, in preference order. Only checkout-private uv-managed interpreters
