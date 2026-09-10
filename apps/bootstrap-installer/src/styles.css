@@ -53,6 +53,28 @@
 }
 
 /*
+ * Installer background — Shani red.
+ *
+ * The app shell paints `bg-background`, which resolves
+ * --background → --dt-background → --ui-bg-chrome. Overriding the single
+ * --ui-bg-chrome token recolors the whole shell in both light and dark
+ * appearance; unlayered so it beats the imported @layer base seeds.
+ */
+:root {
+  --ui-bg-chrome: #dd3333;
+
+  /* Light-mode accent overrides: the imported desktop light seeds are the
+     blue Hermes palette (#0053fd), so retune them to the Shani red family.
+     Without this the cream wordmark/primary CTA sit blue-on-red in light
+     appearance (the dark block below only applies when `.dark` is set). */
+  --theme-primary: #ffffff;
+  --theme-secondary: color-mix(in srgb, #dd3333 14%, #ffffff);
+  --theme-accent-soft: color-mix(in srgb, #dd3333 12%, #ffffff);
+  --theme-midground: #ffffff;
+  --dt-primary-foreground: #dd3333;
+}
+
+/*
  * Dark appearance — Nous dark seeds.
  *
  * The imported desktop :root.dark only flips the per-mode mix knobs + neutral
@@ -69,20 +91,20 @@
 :root.dark {
   color-scheme: dark;
 
-  --theme-foreground: #ffe6cb;
-  --theme-primary: #ffe6cb;
-  --theme-secondary: #1b45a4;
-  --theme-accent-soft: #1540b1;
-  --theme-midground: #0053fd;
-  --theme-warm: #ffe6cb;
-  --theme-background-seed: #0d2f86;
-  --theme-sidebar-seed: #09286f;
-  --theme-card-seed: #12378f;
-  --theme-elevated-seed: #123a96;
-  --theme-bubble-seed: #143b91;
+  --theme-foreground: #ffffff;
+  --theme-primary: #ffffff;
+  --theme-secondary: #e88f8f;
+  --theme-accent-soft: #e05555;
+  --theme-midground: #ffffff;
+  --theme-warm: #ffd9a0;
+  --theme-background-seed: #dd3333;
+  --theme-sidebar-seed: #c22a2a;
+  --theme-card-seed: #e04545;
+  --theme-elevated-seed: #e24b4b;
+  --theme-bubble-seed: #e34f4f;
 
-  /* Non-derived shadcn tokens applyTheme() paints inline (Nous dark values). */
-  --dt-primary-foreground: #0d2f86;
+  /* Non-derived shadcn tokens applyTheme() paints inline (Shani red values). */
+  --dt-primary-foreground: #dd3333;
   --dt-destructive: #c0473a;
   --dt-destructive-foreground: #fef2f2;
 }

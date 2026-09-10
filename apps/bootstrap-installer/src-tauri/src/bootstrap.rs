@@ -466,8 +466,8 @@ async fn run_bootstrap(
     let kind = ScriptKind::for_current_os();
 
     let pin = Pin {
-        commit: args.commit.or_else(|| option_env_string("BUILD_PIN_COMMIT")),
-        branch: args.branch.or_else(|| option_env_string("BUILD_PIN_BRANCH")),
+        commit: args.commit.clone().or_else(|| option_env_string("BUILD_PIN_COMMIT")),
+        branch: args.branch.clone().or_else(|| option_env_string("BUILD_PIN_BRANCH")),
     };
 
     tracing::info!(
