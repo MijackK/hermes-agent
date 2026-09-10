@@ -96,7 +96,7 @@ if (-not $SkipInstall) {
     $desktopFlag = if ($IncludeDesktop -or $OpenDesktop) { @("-IncludeDesktop") } else { @() }
     & $InstallScript -SkipSetup @desktopFlag @InstallArgs
     if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) { throw "install.ps1 exited with code $LASTEXITCODE" }
-    Write-Ok "Hermes installed"
+    Write-Ok "Shani Agent installed"
 } else {
     Write-Step "Skipping Hermes install (-SkipInstall)"
 }
