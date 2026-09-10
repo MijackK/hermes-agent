@@ -91,6 +91,14 @@ fn get_mode(state: tauri::State<'_, Arc<AppState>>) -> AppMode {
     state.mode
 }
 
+/// Which OS the installer is running on, so the frontend can gate OS-specific
+/// options (the local-LLM step is Windows-only). Returned as a lowercase string
+/// ("windows" / "macos" / "linux" / ...) matching `std::env::consts::OS`.
+#[tauri::command]
+fn get_platform() -> String {
+    std::env::consts::OS.to_string()
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     // Tracing → bootstrap-installer.log under HERMES_HOME/logs/ so install
@@ -103,7 +111,7 @@ pub fn run() {
     // Hermes is already installed, so users can re-run setup to repair a broken
     // install instead of the launcher fast path silently relaunching the app.
     let force_setup = force_setup_from_args(std::env::args().skip(1));
-    tracing::info!(?mode, force_setup, "Hermes installer starting");
+    tracing::info!(?mode, force_setup, "Shani installer starting");
 
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
@@ -137,9 +145,9 @@ pub fn run() {
                             // Brief grace so the spawned app is registered
                             // before we exit (mirrors launch_hermes_desktop).
                             std::thread::sleep(std::time::Duration::from_millis(200));
-                            tracing::info!(
-                                "hermes already installed — relaunched desktop; exiting installer"
-                            );
+                                tracing::info!(
+                                    "shani already installed — relaunched desktop; exiting installer"
+                                );
                             app.handle().exit(0);
                             return Ok(());
                         }
@@ -168,6 +176,8 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             // Mode (install vs update)
             get_mode,
+            // Platform (OS), for gating OS-specific UI
+            get_platform,
             // Bootstrap lifecycle
             bootstrap::start_bootstrap,
             bootstrap::cancel_bootstrap,

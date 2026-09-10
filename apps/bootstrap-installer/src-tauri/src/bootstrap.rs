@@ -48,6 +48,21 @@ pub struct StartBootstrapArgs {
     /// Optional override for HERMES_HOME. Tests use this; production
     /// almost always falls back to the OS default.
     pub hermes_home: Option<String>,
+    /// After install, point Hermes at a local OpenAI-compatible endpoint
+    /// (mirrors scripts/install-with-local-llm.ps1 with -SkipInstall). Windows
+    /// only; ignored on other platforms.
+    #[serde(default)]
+    pub configure_local_llm: bool,
+    /// Local model id exactly as the backend serves it (e.g. "llama3.2:3b").
+    #[serde(default)]
+    pub model: Option<String>,
+    /// OpenAI-compatible base URL of the local server
+    /// (e.g. "http://localhost:11434/v1").
+    #[serde(default)]
+    pub base_url: Option<String>,
+    /// Skip installing Ollama and pulling the model (non-Ollama backends).
+    #[serde(default)]
+    pub skip_ollama: bool,
 }
 
 fn default_true() -> bool {
@@ -562,10 +577,23 @@ async fn run_bootstrap(
         anyhow!(err)
     })?;
 
+    // Surface any post-install local-LLM step as a synthetic stage so the
+    // progress UI renders it as a discrete step alongside the install stages.
+    let mut display_stages = manifest.stages.clone();
+    #[cfg(target_os = "windows")]
+    if args.configure_local_llm {
+        display_stages.push(crate::events::StageInfo {
+            name: "local-llm".to_string(),
+            title: "Configuring local model".to_string(),
+            category: "local-llm".to_string(),
+            needs_user_input: false,
+        });
+    }
+
     emit_event(
         &app,
         BootstrapEvent::Manifest {
-            stages: manifest.stages.clone(),
+            stages: display_stages,
             protocol_version: manifest.protocol_version,
         },
     );
@@ -776,6 +804,12 @@ async fn run_bootstrap(
         }
     }
 
+    // 3b. Optional local-LLM setup (Windows only) — mirrors install-with-local-llm.ps1.
+    #[cfg(target_os = "windows")]
+    if args.configure_local_llm {
+        run_local_llm_setup(&app, &args, &pin, &cancel_rx_holder).await?;
+    }
+
     // 4. Resolve install_root. install.ps1 doesn't (yet) report this back
     // explicitly; we infer it from $HermesHome which Stage-Repository clones
     // the repo INTO at $HermesHome\hermes-agent. Mirrors hermes_constants.
@@ -921,6 +955,146 @@ async fn run_install_script(
             tracing::error!(?e, "install script invocation failed");
             anyhow!("install script invocation failed: {e:#}")
         })
+}
+
+/// Optional Windows-only post-install step mirroring scripts/install-with-local-llm.ps1
+/// invoked with `-SkipInstall`: Hermes is already installed by the stage loop above,
+/// so this only ensures Ollama (optional) and points Hermes at the local endpoint.
+#[cfg(target_os = "windows")]
+async fn run_local_llm_setup(
+    app: &AppHandle,
+    args: &StartBootstrapArgs,
+    pin: &Pin,
+    cancel_rx_holder: &Arc<Mutex<Option<mpsc::Receiver<()>>>>,
+) -> Result<()> {
+    let app_for_log = app.clone();
+    let emit_log = move |line: &str| {
+        emit_event(
+            &app_for_log,
+            BootstrapEvent::Log {
+                stage: Some("local-llm".to_string()),
+                line: line.to_string(),
+                stream: LogStream::Stdout,
+            },
+        );
+        tracing::info!(target: "bootstrap.log", "{line}");
+    };
+
+    // Resolve install-with-local-llm.ps1 from the same repo/pin as install.ps1.
+    let script = install_script::resolve(install_script::ScriptKind::LocalLlmPs1, pin, &emit_log)
+        .await
+        .map_err(|e| {
+            let msg = format!("resolve local-LLM script failed: {e:#}");
+            emit_event(
+                &app,
+                BootstrapEvent::Failed {
+                    stage: Some("local-llm".to_string()),
+                    error: msg.clone(),
+                },
+            );
+            anyhow!(msg)
+        })?;
+
+    // -SkipInstall: Hermes is already installed by the stage loop. Everything
+    // else (model/base_url/skip-ollama) forwards to the wrapper verbatim.
+    let mut script_args: Vec<String> = vec!["-SkipInstall".to_string()];
+    if let Some(model) = &args.model {
+        script_args.push("-Model".to_string());
+        script_args.push(model.clone());
+    }
+    if let Some(base_url) = &args.base_url {
+        script_args.push("-BaseUrl".to_string());
+        script_args.push(base_url.clone());
+    }
+    if args.skip_ollama {
+        script_args.push("-SkipOllama".to_string());
+    }
+
+    emit_event(
+        app,
+        BootstrapEvent::Stage {
+            name: "local-llm".to_string(),
+            state: StageState::Running,
+            duration_ms: None,
+            result: None,
+            error: None,
+        },
+    );
+    let started = std::time::Instant::now();
+
+    let mut cancel_rx = cancel_rx_holder.lock().await.take();
+    let result = run_install_script(
+        app,
+        &script.path,
+        &script_args,
+        args.hermes_home.as_deref(),
+        &mut cancel_rx,
+        Some("local-llm".to_string()),
+    )
+    .await?;
+    *cancel_rx_holder.lock().await = cancel_rx;
+
+    let duration_ms = started.elapsed().as_millis() as u64;
+
+    if result.killed {
+        emit_event(
+            app,
+            BootstrapEvent::Stage {
+                name: "local-llm".to_string(),
+                state: StageState::Failed,
+                duration_ms: Some(duration_ms),
+                result: None,
+                error: Some("cancelled by user".to_string()),
+            },
+        );
+        emit_event(
+            app,
+            BootstrapEvent::Failed {
+                stage: Some("local-llm".to_string()),
+                error: "cancelled by user".to_string(),
+            },
+        );
+        return Err(anyhow!("cancelled by user"));
+    }
+
+    if result.exit_code != Some(0) {
+        let err = format!(
+            "local model configuration failed (exit {:?})\n{}",
+            result.exit_code,
+            result.stderr.trim()
+        );
+        emit_event(
+            app,
+            BootstrapEvent::Stage {
+                name: "local-llm".to_string(),
+                state: StageState::Failed,
+                duration_ms: Some(duration_ms),
+                result: None,
+                error: Some(err.clone()),
+            },
+        );
+        emit_event(
+            app,
+            BootstrapEvent::Failed {
+                stage: Some("local-llm".to_string()),
+                error: err.clone(),
+            },
+        );
+        return Err(anyhow!(err));
+    }
+
+    emit_event(
+        app,
+        BootstrapEvent::Stage {
+            name: "local-llm".to_string(),
+            state: StageState::Succeeded,
+            duration_ms: Some(duration_ms),
+            result: None,
+            error: None,
+        },
+    );
+
+    Ok(())
 }
 
 fn build_pin_args(script: &install_script::ResolvedScript) -> Vec<String> {

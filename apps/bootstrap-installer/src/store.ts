@@ -76,6 +76,7 @@ export const $mode = atom<AppMode>('install')
 export const $bootstrap = atom<BootstrapStateModel>(INITIAL)
 export const $logPath = atom<string | null>(null)
 export const $hermesHome = atom<string | null>(null)
+export const $platform = atom<string | null>(null)
 
 export const $progress = computed($bootstrap, (b) => {
   const total = b.stageOrder.length
@@ -180,6 +181,9 @@ export async function initialize(): Promise<void> {
     $logPath.set('~/.hermes/logs/bootstrap-installer.log')
     $hermesHome.set('~/.hermes')
     $mode.set(fake === 'update' ? 'update' : 'install')
+    // Pretend Windows so the local-model section (Windows-only) shows in the
+    // dev preview too.
+    $platform.set('windows')
 
     // Update auto-runs (it's a hand-off); install/failure wait for the welcome click.
     if (fake === 'update') {void runFakeBoot('update')}
@@ -189,15 +193,17 @@ export async function initialize(): Promise<void> {
 
   // Pull static info on mount for the diagnostics footer.
   try {
-    const [logPath, hermesHome, mode] = await Promise.all([
+    const [logPath, hermesHome, mode, platform] = await Promise.all([
       invoke<string>('get_log_path'),
       invoke<string>('get_hermes_home'),
-      invoke<AppMode>('get_mode')
+      invoke<AppMode>('get_mode'),
+      invoke<string>('get_platform')
     ])
 
     $logPath.set(logPath)
     $hermesHome.set(hermesHome)
     $mode.set(mode)
+    $platform.set(platform)
   } catch (err) {
     console.warn('failed to fetch installer paths', err)
   }
@@ -299,7 +305,34 @@ export async function initialize(): Promise<void> {
 // Actions
 // ---------------------------------------------------------------------------
 
-export async function startInstall(opts?: { branch?: string }): Promise<void> {
+export interface LocalLlmOptions {
+  configureLocalLlm: boolean
+  model: string
+  baseUrl: string
+  skipOllama: boolean
+}
+
+const DEFAULT_LOCAL_LLM: LocalLlmOptions = {
+  configureLocalLlm: false,
+  model: 'llama3.2:3b',
+  baseUrl: 'http://localhost:11434/v1',
+  skipOllama: false
+}
+
+/// The last options the user submitted, so a Retry from the failure screen
+/// re-runs with the same choices instead of silently dropping them.
+let lastInstallOpts: LocalLlmOptions = DEFAULT_LOCAL_LLM
+
+export async function startInstall(opts?: { branch?: string } & Partial<LocalLlmOptions>): Promise<void> {
+  if (opts) {
+    lastInstallOpts = {
+      configureLocalLlm: opts.configureLocalLlm ?? lastInstallOpts.configureLocalLlm,
+      model: opts.model ?? lastInstallOpts.model,
+      baseUrl: opts.baseUrl ?? lastInstallOpts.baseUrl,
+      skipOllama: opts.skipOllama ?? lastInstallOpts.skipOllama
+    }
+  }
+
   const fake = fakeMode()
 
   if (fake) {
@@ -317,7 +350,11 @@ export async function startInstall(opts?: { branch?: string }): Promise<void> {
       commit: null,
       branch: opts?.branch ?? null,
       include_desktop: true,
-      hermes_home: null
+      hermes_home: null,
+      configure_local_llm: lastInstallOpts.configureLocalLlm,
+      model: lastInstallOpts.configureLocalLlm ? lastInstallOpts.model : null,
+      base_url: lastInstallOpts.configureLocalLlm ? lastInstallOpts.baseUrl : null,
+      skip_ollama: lastInstallOpts.skipOllama
     }
   })
 }

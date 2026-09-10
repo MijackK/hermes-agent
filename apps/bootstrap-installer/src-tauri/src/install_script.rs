@@ -39,11 +39,13 @@ pub enum ScriptSource {
     Downloaded,
 }
 
-/// What flavor of script (Windows .ps1 vs Unix .sh).
-#[derive(Debug, Clone, Copy)]
+/// What flavor of script (Windows .ps1 vs Unix .sh), plus the Windows-only
+/// local-LLM wrapper that mirrors scripts/install-with-local-llm.ps1.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ScriptKind {
     Ps1,
     Sh,
+    LocalLlmPs1,
 }
 
 impl ScriptKind {
@@ -59,6 +61,7 @@ impl ScriptKind {
         match self {
             Self::Ps1 => "install.ps1",
             Self::Sh => "install.sh",
+            Self::LocalLlmPs1 => "install-with-local-llm.ps1",
         }
     }
 }
@@ -216,6 +219,7 @@ fn cached_path(kind: ScriptKind, commit_or_ref: &str) -> PathBuf {
     let filename = match kind {
         ScriptKind::Ps1 => format!("install-{safe}.ps1"),
         ScriptKind::Sh => format!("install-{safe}.sh"),
+        ScriptKind::LocalLlmPs1 => format!("install-with-local-llm-{safe}.ps1"),
     };
     paths::bootstrap_cache_dir().join(filename)
 }
@@ -255,7 +259,7 @@ const UTF8_BOM: &[u8] = &[0xEF, 0xBB, 0xBF];
 /// are left unchanged — a BOM would break `#!/bin/bash`.
 pub(crate) fn prepare_cached_script_bytes(kind: ScriptKind, bytes: &[u8]) -> Vec<u8> {
     match kind {
-        ScriptKind::Ps1 => {
+        ScriptKind::Ps1 | ScriptKind::LocalLlmPs1 => {
             if bytes.starts_with(UTF8_BOM) {
                 bytes.to_vec()
             } else {
@@ -279,7 +283,7 @@ pub(crate) fn prepare_cached_script_bytes(kind: ScriptKind, bytes: &[u8]) -> Vec
 /// failed upgrade logs a warning and keeps the original file (which is no
 /// worse than the pre-existing behavior).
 fn upgrade_cached_script(kind: ScriptKind, cached: &Path, emit_log: &impl Fn(&str)) {
-    if !matches!(kind, ScriptKind::Ps1) {
+    if !matches!(kind, ScriptKind::Ps1 | ScriptKind::LocalLlmPs1) {
         return;
     }
     let bytes = match std::fs::read(cached) {
@@ -324,7 +328,7 @@ fn upgrade_cached_script(kind: ScriptKind, cached: &Path, emit_log: &impl Fn(&st
 /// falling back to the cached script.
 async fn download(kind: ScriptKind, commit_or_ref: &str, dest_path: &Path) -> Result<()> {
     let url = format!(
-        "https://raw.githubusercontent.com/NousResearch/hermes-agent/{}/scripts/{}",
+        "https://raw.githubusercontent.com/MijackK/shani-agent/{}/scripts/{}",
         commit_or_ref,
         kind.filename()
     );
