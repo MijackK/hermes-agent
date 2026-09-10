@@ -21,7 +21,7 @@ export default function Welcome() {
   const platform = useStore($platform)
   const isWindows = platform === 'windows'
 
-  const [configureLocalLlm, setConfigureLocalLlm] = useState(false)
+  const [configureLocalLlm, setConfigureLocalLlm] = useState(true)
   const [model, setModel] = useState('llama3.2:3b')
   const [baseUrl, setBaseUrl] = useState('http://localhost:11434/v1')
   const [skipOllama, setSkipOllama] = useState(false)
