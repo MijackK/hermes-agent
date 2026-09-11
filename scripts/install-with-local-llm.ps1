@@ -175,6 +175,7 @@ Write-Step "Configuring Hermes to use the local model"
 & $hermes config set model.provider custom | Out-Null
 & $hermes config set model.base_url $BaseUrl | Out-Null
 & $hermes config set model.default $Model | Out-Null
+& $hermes config set agent.reasoning_effort none | Out-Null
 if ($LASTEXITCODE -ne 0) { throw "hermes config set failed (exit $LASTEXITCODE)" }
 
 Write-Host ""
@@ -182,6 +183,7 @@ Write-Ok "Done. Hermes is configured for a local LLM:"
 Write-Host "    provider : custom"
 Write-Host "    base_url : $BaseUrl"
 Write-Host "    model    : $Model"
+Write-Host "    thinking : off"
 Write-Host ""
 
 # ---------------------------------------------------------------------------
