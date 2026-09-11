@@ -231,8 +231,8 @@ pub(crate) fn resolve_hermes_desktop_exe(install_root: &std::path::Path) -> Opti
     let release_dir = install_root.join("apps").join("desktop").join("release");
     let candidates: &[(&str, &str)] = if cfg!(target_os = "windows") {
         &[
-            ("win-unpacked", "Hermes.exe"),
-            ("win-arm64-unpacked", "Hermes.exe"),
+            ("win-unpacked", "Shani.exe"),
+            ("win-arm64-unpacked", "Shani.exe"),
         ]
     } else if cfg!(target_os = "macos") {
         &[

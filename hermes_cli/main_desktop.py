@@ -136,7 +136,7 @@ def _desktop_packaged_executable_in(release_dir: Path) -> Optional[Path]:
         candidates = list(release_dir.glob("mac*/Hermes.app/Contents/MacOS/Hermes"))
     elif sys.platform == "win32":
         candidates = [
-            release_dir / d / "Hermes.exe" for d in ("win-unpacked", "win-ia32-unpacked", "win-arm64-unpacked")
+            release_dir / d / "Shani.exe" for d in ("win-unpacked", "win-ia32-unpacked", "win-arm64-unpacked")
         ]
     else:
         candidates = [

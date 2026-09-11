@@ -4272,8 +4272,8 @@ function Install-Desktop {
     # 3. Sanity-check the produced binary. Probe both arches so this works
     # on x64 and arm64 build machines.
     $exeCandidates = @(
-        "$desktopDir\release\win-unpacked\Hermes.exe",
-        "$desktopDir\release\win-arm64-unpacked\Hermes.exe"
+        "$desktopDir\release\win-unpacked\Shani.exe",
+        "$desktopDir\release\win-arm64-unpacked\Shani.exe"
     )
     $found = $false
     $desktopExe = $null
